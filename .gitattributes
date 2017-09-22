@@ -1,2 +1,78 @@
 # Auto detect text files and perform LF normalization
 * text=auto
+---------
+Fri, 15/09/2017
+Author: Khanh Dang
+There are (1) 3 java packages (4 files .java) and (2) 2 files .html (in templates) and (3) 1 file .css (in static > css)
+  (1) 3 java packages:
+    1. ..bookstore
+    DemoApplication.java
+    --> log
+    --> @Bean -> CommandLineRunner
+    
+    2. ..bookstore.domain
+    a) Book.java
+    --> @Entity
+    --> @GeneratedValue(strategy = GenerationType.AUTO) (for private Long categoryid)
+    --> public Book(){}
+    --> getters and setters
+    --> toString    
+    b) BookRepository.java (Interface type)
+    --> public interface BookRepository extends CrudRepository<Book, Long>{
+	  List<Book> findByIsbn(int isbn);}
+    
+    3. ..bookstore.web
+    BookController.java
+    --> @RequestMapping(value = "/booklist", method = RequestMethod.GET) //Model model --> 
+              model.addAttribute("book", repository.findAll())
+    --> @RequestMapping(value = "/save", method = RequestMethod.POST) //Book book --> 
+              repository.save(book) => return "redirect:booklist"
+    --> @RequestMapping(value = "/add") //@PathVariable(id) Long bookId, Model model --> 
+              model.addAttribute("book", new Book());
+    	        model.addAttribute("categories", crepository.findAll());
+    --> @RequestMapping(value = "/delete{id}", method = RequestMethod.GET), Model model --> 
+              repository.delete(bookId) => return "redirect../booklist"
+  
+  (2) 2 files .html
+    1. booklist.html
+    2. addbook.html
+  
+  (3) 1 file .css (Use copy paste to the file) 
+
+---------
+
+Fri, 22/09/2017
+Author: Khanh Dang
+(1) Add 2 .java files to package ..bookstore.domain, modify Book.java, BookController.java and (2) Modify in DemoApplication.java (3) 2 html files
+  (1) Add 2 .java files to package ..bookstore.domain
+    1. Category.java
+    --> @Entity
+    --> @GeneratedValue(strategy = GenerationType.AUTO) (for private Long categoryid)
+    --> @OneToMany(cascade = CascadeType.ALL,mappedBy = "category")
+	  --> private List<Book> books;
+    --> public Book(){}
+    --> getters and setters
+    --> toString
+    
+    2. CategoryRepository.java 
+    --> public interface CategoryRepository extends CrudRepository<Category, Long>{
+	  List<Category> findByName(String name);
+    }
+    
+    3. Book.java
+    --> @ManyToOne
+    --> @JoinColumn(name = "categoryid")
+	  --> private Category category;
+    --> Modify getters and setters and toString
+    
+    4. BookController.java
+    --> Modify @RequestMapping(value = "/add")
+    --> model.addAttribute("categories", crepository.findAll());
+    
+    (2) Modify in DemoApplication.java
+    --> Mpdify in @Bean -> CommandLineRunner
+    
+    (3) 2 html files
+    
+    
+    

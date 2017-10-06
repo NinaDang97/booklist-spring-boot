@@ -38,8 +38,8 @@ public class DemoApplication {
 //			jdbcTemplate.update("insert into student(isbn, title, author, year, price, name) values (?, ?, ?, ?, ?, ?)", 200, "Introduction to Java", "Timmy Dogue", 2004, 70, "Java Programming");
 //	        
 			// Create users: admin/admin user/user
-			User user1 = new User("user", "$2a$06$DA00YK7iTpEAJdVO0WOmFujMnqCF0vBTmkAL.FP9QBGftiPh3/38.", "a1603171@myy.haaga-helia.fi","USER");
-			User user2 = new User("admin", "$2a$06$/UYvbL.Gz.eug9LIlEqud.IMGJuNZ5MUwXyl8tOmy/rgMYwQBuNCC", "khanh.2dbt@gmail.com","ADMIN");
+			User user1 = new User("user", "$2a$06$aCWhRdGA.UPCIYTeoBg4mujM794.IiL7oTMhwvR5ci2D9p7yS0qAy", "a1603171@myy.haaga-helia.fi","USER");
+			User user2 = new User("admin", "$2a$06$mCmpyngoVGv3Q/XEYn73ouajQTRkYEIGiW4EUMyFdBSqreuGy/CWK", "khanh.2dbt@gmail.com","ADMIN");
 			urepository.save(user1);
 			urepository.save(user2);
 			

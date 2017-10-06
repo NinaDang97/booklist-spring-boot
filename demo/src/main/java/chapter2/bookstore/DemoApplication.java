@@ -12,6 +12,8 @@ import chapter2.bookstore.domain.Book;
 import chapter2.bookstore.domain.BookRepository;
 import chapter2.bookstore.domain.Category;
 import chapter2.bookstore.domain.CategoryRepository;
+import chapter2.bookstore.domain.User;
+import chapter2.bookstore.domain.UserRepository;
 
 @SpringBootApplication
 public class DemoApplication {
@@ -22,7 +24,7 @@ public class DemoApplication {
 	}
 	
 	@Bean
-	public CommandLineRunner bookDemo(BookRepository brepository, CategoryRepository crepository) {
+	public CommandLineRunner bookDemo(BookRepository brepository, CategoryRepository crepository, UserRepository urepository) {
 		return (args) -> {
 			log.info("save a couple of books");
 			crepository.save(new Category("SQL database"));
@@ -35,6 +37,11 @@ public class DemoApplication {
 //			jdbcTemplate.update("insert into student(isbn, title, author, year, price, name) values (?, ?, ?, ?, ?, ?)", 100, "SQL Advanced", "Amir Rahul", 2018, 28, "SQL database");
 //			jdbcTemplate.update("insert into student(isbn, title, author, year, price, name) values (?, ?, ?, ?, ?, ?)", 200, "Introduction to Java", "Timmy Dogue", 2004, 70, "Java Programming");
 //	        
+			// Create users: admin/admin user/user
+			User user1 = new User("user", "$2a$06$DA00YK7iTpEAJdVO0WOmFujMnqCF0vBTmkAL.FP9QBGftiPh3/38.", "a1603171@myy.haaga-helia.fi","USER");
+			User user2 = new User("admin", "$2a$06$/UYvbL.Gz.eug9LIlEqud.IMGJuNZ5MUwXyl8tOmy/rgMYwQBuNCC", "khanh.2dbt@gmail.com","ADMIN");
+			urepository.save(user1);
+			urepository.save(user2);
 			
 			log.info("fetch all books");
 			for (Book book : brepository.findAll()) {

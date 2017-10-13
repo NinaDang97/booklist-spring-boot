@@ -27,12 +27,12 @@ public class DemoApplication {
 	public CommandLineRunner bookDemo(BookRepository brepository, CategoryRepository crepository, UserRepository urepository) {
 		return (args) -> {
 			log.info("save a couple of books");
-			crepository.save(new Category("SQL database"));
-			crepository.save(new Category("Java Programming"));
-			crepository.save(new Category("Frontend Developement"));
+			crepository.save(new Category("SQL"));
+			crepository.save(new Category("Java"));
+			crepository.save(new Category("Frontend"));
 			
-//			brepository.save(new Book(1, "Math", "Joonas", 2012, 142, crepository.findByName("SQL database").get(1)));
-//			brepository.save(new Book(2, "Javascript", "Katy Perry", 2002, 87, crepository.findByName("Frontend Development").get(1)));	
+//			brepository.save(new Book(1, "Math", "Joonas", 2012, 142, crepository.findByName("SQL").get(0)));
+//			brepository.save(new Book(2, "Javascript", "Katy", 2002, 87, crepository.findByName("Frontend").get(0)));	
 			
 //			jdbcTemplate.update("insert into student(isbn, title, author, year, price, name) values (?, ?, ?, ?, ?, ?)", 100, "SQL Advanced", "Amir Rahul", 2018, 28, "SQL database");
 //			jdbcTemplate.update("insert into student(isbn, title, author, year, price, name) values (?, ?, ?, ?, ?, ?)", 200, "Introduction to Java", "Timmy Dogue", 2004, 70, "Java Programming");
